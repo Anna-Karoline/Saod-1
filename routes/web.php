@@ -14,5 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+Route::middleware([])->group(function () {
+    Route::resource('horarios', 'App\Http\Controllers\agendamento\HorariosController');
+    Route::get('/agendamento/create', 'App\Http\Controllers\agendamento\AgendaController@index')->name('agenda.create');
+});
+
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
